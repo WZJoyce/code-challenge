@@ -22,3 +22,4 @@ new Vue({
         },
     })
 }).$mount(app);
+

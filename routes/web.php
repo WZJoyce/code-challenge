@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('searchimage');
+});
+Route::get('/medialibrary', function () {
+    return view('medialibrary');
 });

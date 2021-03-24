@@ -10,6 +10,7 @@ Vue.use(InertiaApp)
 
 let app = document.getElementById('app')
 
+Vue.component('searchImage', require('./searchImage.vue').default);
 new Vue({
     vuetify,
     store,

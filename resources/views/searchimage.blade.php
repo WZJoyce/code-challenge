@@ -8,7 +8,8 @@
     </head>
     <body>
        <div id="app">
-            <searchimage/>       
+            <searchImage/>
+            session_caches_limitersss
         </div>   
         <script src="{{ asset('js/app.js') }}"> </script>
         

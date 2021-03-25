@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('searchimage');
-});
-Route::get('/medialibrary', function () {
-    return view('medialibrary');
-});
+use App\Http\Controllers\DashboardController;
+
+Route::get('/', [DashboardController::class, 'index']);
+Route::get('/medialibrary',[DashboardController::class,'index2']);
+Route::get('/',[DashboardController::class,'home']);
+

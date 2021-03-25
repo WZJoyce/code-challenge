@@ -1,5 +1,6 @@
 require('./bootstrap')
 
+import "tailwindcss/tailwind.css"
 import Vue from 'vue'
 
 /**
@@ -10,10 +11,7 @@ Vue.use(InertiaApp)
 
 let app = document.getElementById('app')
 
-Vue.component('searchImage', require('./searchImage.vue').default);
 new Vue({
-    vuetify,
-    store,
     render: h => h(InertiaApp, {
         props: {
             initialPage: JSON.parse(app.dataset.page),

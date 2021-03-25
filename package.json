@@ -23,6 +23,7 @@
     "dependencies": {
         "@inertiajs/inertia": "^0.8.5",
         "@inertiajs/inertia-vue": "^0.5.5",
+        "@mdi/font": "^5.9.55",
         "enhanced-resolve": "^5.7.0",
         "tailwindcss": "^2.0.4",
         "vue": "^2.6.12",

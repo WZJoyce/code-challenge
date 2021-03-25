@@ -9,7 +9,7 @@
     <body>
        <div id="app">
             <searchImage/>
-            session_caches_limitersss
+            RRR
         </div>   
         <script src="{{ asset('js/app.js') }}"> </script>
         

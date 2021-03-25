@@ -1,8 +1,9 @@
 <template>
   <div id="searchImage"> 
-    <h1>Search Image</h1>
-     
-    <navbar />
+    <navbar/>
+     {{ $page.props.data }}
+    <Showcard/>
+   
    
     
   </div>
@@ -10,10 +11,12 @@
 
 <script>
   import  Navbar from '@/components/commons/Navbar'
+  import ImageCard from '@/components/commons/Showcard';
   export default {
     name: 'searchImage',
     components: {
-      Navbar
+       Navbar,
+       Showcard
     }
     
   }

@@ -2,7 +2,7 @@
   <div id="searchImage"> 
     <navbar/>
      {{ $page.props.data }}
-    <Showcard/>
+    <showcard v-bind:reveal-edit="false" ></showcard>
    
    
     
@@ -11,9 +11,10 @@
 
 <script>
   import  Navbar from '@/components/commons/Navbar'
-  import ImageCard from '@/components/commons/Showcard';
+  import Showcard from '@/components/commons/Showcard'
   export default {
     name: 'searchImage',
+   
     components: {
        Navbar,
        Showcard

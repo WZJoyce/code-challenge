@@ -7,15 +7,15 @@ use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function searchImage()
     {
         return Inertia::render('searchImage',[
             'data' => 'test'
         ]);
     }
-    public function index2()
+    public function mediaLibrary()
     {
-        return Inertia::render('medialibrary',[
+        return Inertia::render('mediaLibrary',[
             'data' => 'test'
         ]);
     }

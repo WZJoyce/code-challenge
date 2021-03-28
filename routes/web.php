@@ -13,7 +13,7 @@
 
 use App\Http\Controllers\DashboardController;
 
-Route::get('/', [DashboardController::class, 'index']);
-Route::get('/medialibrary',[DashboardController::class,'index2']);
+Route::get('/searchimage', [DashboardController::class, 'searchImage']);
+Route::get('/medialibrary',[DashboardController::class,'mediaLibrary']);
 Route::get('/',[DashboardController::class,'home']);
 

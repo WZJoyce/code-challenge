@@ -2,10 +2,7 @@
   <div id="searchImage"> 
     <navbar/>
      {{ $page.props.data }}
-    <showcard v-bind:reveal-edit="false" ></showcard>
-   
-   
-    
+    <showcard v-bind:reveal-edit="false" ></showcard>  
   </div>
 </template>
 

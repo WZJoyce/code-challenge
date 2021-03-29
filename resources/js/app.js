@@ -3,6 +3,7 @@ require('./bootstrap')
 import "tailwindcss/tailwind.css"
 import Vue from 'vue'
 
+
 /**
  * Import and setup Inertia.js
  **/

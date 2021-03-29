@@ -24,7 +24,7 @@
                 <input class="w-full px-3 py-2 rounded p-2" type="text" placeholder="Search..."  v-model="message" @keyup.enter="searchImages">
                 
                
-                <button class="bg-white w-auto flex justify-end items-center text-gray-800 rounded p-2 hover:text-gray-400" @click="childClick ">
+                <button class="bg-white w-auto flex justify-end items-center text-gray-800 rounded p-2 hover:text-gray-400" @click= "searchImages">
                     <a class="font-bold text-xs ">Search</a>    
                 </button>
             </div>
@@ -55,9 +55,7 @@
         },
         methods: {
          childClick () {
-        // childByValue是在父组件on监听的方法
-        // 第二个参数this.childValue是需要传的值
-  
+         //to value parents
         var that=this;
         
         console.log(this.totalPage);
@@ -84,7 +82,9 @@
                  return;
             }
              console.log("b");
-             
+             that.childClick ();
+             console.log(response);
+
              
            }
          ).catch(function(err){})

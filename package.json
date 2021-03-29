@@ -24,9 +24,16 @@
         "@inertiajs/inertia": "^0.8.5",
         "@inertiajs/inertia-vue": "^0.5.5",
         "@mdi/font": "^5.9.55",
+        "@vuesence/modal-window": "^0.7.8",
         "enhanced-resolve": "^5.7.0",
         "tailwindcss": "^2.0.4",
+        "v-easy-dialog": "^1.0.6",
         "vue": "^2.6.12",
-        "vue-template-compiler": "^2.6.12"
+        "vue-data-loading": "^0.2.4",
+        "vue-flex-waterfall": "^1.0.7",
+        "vue-js-modal": "^2.0.0-rc.6",
+        "vue-template-compiler": "^2.6.12",
+        "vue-waterfall": "^1.0.6",
+        "vue-window-modal": "git+https://github.com/ropbla9/vue-window-modal.git"
     }
 }

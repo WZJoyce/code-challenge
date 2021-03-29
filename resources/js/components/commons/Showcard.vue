@@ -1,12 +1,14 @@
 
 <template>
 
-   <div class="max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
-          <img class="object-cover w-full h-auto mt-2" v-bind:src="refMessage" >
-         
+   <div class="max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" >
       
-        <div class="flex items-center justify-between px-4 py-2 bg-white">
-             <p  class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none"  v-if= "!revealEdit"></p>
+       
+     <img class="object-cover w-full h-auto mt-2" v-bind:src="refMessage" > 
+      
+      
+        <div class="flex items-center justify-between px-4 py-2 bg-white" v-if="revealBar">
+
             <button class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none"  @click.stop="editClick" v-if= "revealEdit">Edit</button>
             <button class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -4 24 24" width="24" height="24" preserveAspectRatio="xMinYMin" class="icon__icon"><path d="M17 4H9.415l-.471-1.334A1.001 1.001 0 0 0 8 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zm-6.17-2H17a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V3a3 3 0 0 1 3-3h5c1.306 0 2.417.835 2.83 2z"></path></svg></button>
         </div>
@@ -35,24 +37,31 @@
       </form>
     </div>
   </div>
+  
 </div>
 </template>
 
 <script>
 
   export default {
+
     name: 'Showcard',
     props: {
       revealEdit:Boolean,
       showImage: String,
       searchMassege:String,
       refMessage:String,
+      revealBar:Boolean,
       
     
+    },
+    components: {
+     
     },
     data:function(){
       return{
         open:false,
+        showModal: false
         
         
       }

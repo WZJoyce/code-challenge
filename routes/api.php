@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\api\UnsplashController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('unsplash', [UnsplashController::class, 'search'])->name('unsplash_search');

@@ -7,10 +7,18 @@ use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        // parent::__construct();
+        Inertia::share([
+            'unsplashSearch' => route('unsplash_search')
+        ]);
+    }
+
     public function searchImage()
     {
         return Inertia::render('searchImage',[
-            'data' => 'test'
+            
         ]);
     }
     public function mediaLibrary()

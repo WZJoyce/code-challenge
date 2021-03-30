@@ -8,6 +8,10 @@ module.exports = {
       },
        space: {
         'sm' :'2%',
+         '135':'135px',
+      },
+      container: {
+        center: true,
       },
   },
   variants: {},

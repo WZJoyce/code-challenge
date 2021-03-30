@@ -21,7 +21,7 @@
           </li>
           <li class="nav-item">
             <div class="shadow flex">
-                <input class="w-full px-3 py-2 rounded p-2" type="text" placeholder="Search..."  v-model="message" @keyup.enter="searchImages">
+                <input class="w-full px-3 py-2 rounded p-2" type="text" placeholder="Search..."  v-model="search" @keyup.enter="searchImages">
                 
                
                 <button class="bg-white w-auto flex justify-end items-center text-gray-800 rounded p-2 hover:text-gray-400" @click= "searchImages">
@@ -44,13 +44,13 @@
         name: 'Navbar',
         data(){
           return {
-            message:'', 
-            page:1,
-            imagesList:[],
-            totalPage :0,
-            noResults:false,
-            
-         
+            search: '', 
+            page: 1,
+            imagesList: [],
+            totalPage: 0,
+            noResults: false,
+            perPage: 30,
+            response: null
           }
         },
         methods: {
@@ -65,16 +65,16 @@
        
       },
        searchImages:function(){
-         let clientId= 'tvJ-esl73ynCGpWVq6-93PUBa1Ne80NlCMqEp140-3w';
-         let message = this.message;
-         let page=1;
          var that = this;
-         let perPage=30;
-          console.log(this.totalPage);
-          axios.get('https://api.unsplash.com/search/photos?client_id='+clientId+'&page='+page+'&per_page='+perPage+'&query='+message).
+          let data = new URLSearchParams({
+            search: this.search,
+            page: this.page,
+            perPage: this.perPage
+          }).toString()
+          axios.get(this.$page.props.unsplashSearch + '?' + data).
           then(
            function(response){
-             that.imagesList=response.data.results;
+            that.imagesList = response.data.results;
             that.totalPage = response.data.total_pages;
             if(that.totalPage === 0)
             {

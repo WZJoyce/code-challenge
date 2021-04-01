@@ -103,6 +103,7 @@ export default {
         url: vm.refMessage,})
         .then(function(response) {
           console.log("success");
+          vm.description='';
           
         })
         .catch((err) => console.error(err));

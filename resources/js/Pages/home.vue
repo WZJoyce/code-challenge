@@ -9,8 +9,8 @@
     >
       <ul v-if="imagesList.length != 0" v-for="item in imagesList">
         <showcard
-          v-bind:ref-message="item.urls.small"
-        ></showcard>
+          v-bind:ref-message="item.urls.small" v-bind:id="item.id"
+       ></showcard>
       </ul>
     </vue-flex-waterfall>
     <div class="flex justify-center" v-if="imagesList.length != 0">
@@ -65,6 +65,7 @@ export default {
       }).toString();
       axios.get(this.$page.props.unsplashSearch + "?" + data)
         .then(function(response) {
+          console.log(response);
           vm.imagesList = response.data.results;
           vm.totalPages = response.data.total_pages;
           if (vm.totalPage === 0) {

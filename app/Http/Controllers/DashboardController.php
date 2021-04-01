@@ -13,6 +13,9 @@ class DashboardController extends Controller
         Inertia::share([
             'unsplashSearch' => route('unsplash_search')
         ]);
+        Inertia::share([
+            'image' => route('image')
+        ]);
     }
 
     public function searchImage()

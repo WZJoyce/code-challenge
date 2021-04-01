@@ -30,7 +30,7 @@
     </div>
     <div class="px-4 py-2 items-center">
       <div class="mt-5 md:mt-0 md:col-span-2">
-        <form @submit.prevent="submitform" v-show="open">
+        <form @submit.prevent="imageSave" v-show="open">
           <div class="shadow sm:rounded-md sm:overflow-hidden">
             <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
               <div class="grid grid-cols-3 gap-6">
@@ -42,7 +42,7 @@
                   <textarea
                     id="message"
                     name="message"
-                    v-mode="form.message"
+                    v-model="description"
                     rows="3"
                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"
                     placeholder="Text"
@@ -51,7 +51,9 @@
               </div>
             </div>
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-              <button class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none">
+              <button
+                class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none"
+              >
                 Save
               </button>
             </div>
@@ -72,34 +74,38 @@ export default {
     searchMassege: String,
     refMessage: String,
     revealBar: Boolean,
+    id: String,
+    description: String,
   },
   components: {
     Modal,
-    imageData,
   },
   data() {
     return {
       open: false,
-      imageData:[
-        imageInfor:[],
-        message:'',
-      ]
-     
-      
     };
   },
   methods: {
     editClick() {
       this.open = !this.open;
     },
-    submitForm() {
+    imageSave() {
+      var vm = this;
       this.open = !this.open;
       // axios post to backend
-      axios.post(, {imageData:this.imageData}
+      console.log("id----" + vm.id);
+      console.log("url----" + vm.refMessage);
+      console.log("des   " + vm.description);
+    
+      axios.post(this.$page.props.image, 
+       { id: vm.id,
+        description: vm.description,
+        url: vm.refMessage,})
         .then(function(response) {
-         console.log("work");
+          console.log("success");
+          
         })
-      .catch(err => console.error(err)
+        .catch((err) => console.error(err));
     },
   },
 };

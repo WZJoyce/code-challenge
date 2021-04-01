@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\ImageController;
 use App\Http\Controllers\api\UnsplashController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,9 @@ Route::middleware('auth:api')->get('user', function (Request $request) {
 });
 
 Route::get('unsplash', [UnsplashController::class, 'search'])->name('unsplash_search');
+
+
+
+Route::post('images', [ImageController::class, 'store'])->name('image');
+
+//Route::apiResource('images', 'ImageController', ['namespace' => 'Api', 'as' => 'api.', 'prefix' => 'api']);

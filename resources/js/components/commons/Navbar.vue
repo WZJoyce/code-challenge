@@ -22,9 +22,11 @@
           <li class="nav-item">
             <a
               class="px-3 py-2 flex items-center text-xs font-bold leading-snug text-white hover:opacity-75"
-              href="/medialibrary"
+              href="/medialibrary" 
             >
+           
               Media Library
+            
             </a>
           </li>
           <li class="nav-item">

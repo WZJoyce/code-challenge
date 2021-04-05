@@ -3,16 +3,17 @@
     class="max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
   >
     <img class="object-cover w-full h-auto mt-2" v-bind:src="refMessage" />
-
+   <div class="px-2 border-b border-black" v-if="des"> <p v-bind:des="des" class="font-serif font-normal">{{des}}</p> </div> 
     <div class="flex items-center justify-between px-4 py-2 bg-white">
       <button
         class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none"
-        @click.stop="editClick"
+        @click.stop="editClick"  
       >
         Edit
       </button>
       <button
         class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none"
+        @click="destroyImages"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -53,6 +54,7 @@
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
               <button
                 class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none"
+               
               >
                 Save
               </button>
@@ -76,6 +78,8 @@ export default {
     revealBar: Boolean,
     id: String,
     description: String,
+    des:String,
+    
   },
   components: {
     Modal,
@@ -107,6 +111,33 @@ export default {
           
         })
         .catch((err) => console.error(err));
+    },
+   /* updateImages:function(){
+      var vm = this;
+      axios.put(this.$page.props.imageUpdate,  { id: vm.id,
+        description: vm.description,
+        url: vm.refMessage,})
+      .then(function(response){
+        console.log(response);
+        if(response==false){
+          console.log("new");
+          vm.imageSave();
+        }
+       console.log("update descrption ", vm.id);
+      })
+      .catch(err => console.error(err));
+
+    },*/
+    destroyImages:function(){
+       var vm = this;
+      axios.delete(this.$page.props.imageDestroy+vm.id)
+      .then(function(response){
+       
+        console.log("delete id ");
+        
+      })
+      .catch(err => console.error(err.response));
+
     },
   },
 };

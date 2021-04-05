@@ -16,6 +16,15 @@ class DashboardController extends Controller
         Inertia::share([
             'image' => route('image')
         ]);
+        Inertia::share([
+            'imageShow' => route('image_show')
+        ]);
+        /*Inertia::share([
+            'imageUpdate' => route('image_update')
+        ]);*/
+        Inertia::share([
+            'imageDestroy' => route('image_destroy')
+        ]);
     }
 
     public function searchImage()
@@ -36,5 +45,6 @@ class DashboardController extends Controller
             'data' => 'test'
         ]);
     }
+   
 
 }

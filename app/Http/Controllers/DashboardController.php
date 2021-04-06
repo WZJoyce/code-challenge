@@ -21,9 +21,9 @@ class DashboardController extends Controller
         ]);*/
     }
 
-    public function search()
+    public function searchPage()
     {
-        return Inertia::render('search',[
+        return Inertia::render('searchPage',[
             'data' => 'test'
         ]);
     }
@@ -39,6 +39,7 @@ class DashboardController extends Controller
             'data' => 'test'
         ]);
     }
+
    
 
 }

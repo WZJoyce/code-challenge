@@ -13,7 +13,7 @@
       :break-by-container="true"
     >
       <ul v-if="imagesList.length != 0" v-for="item in imagesList">
-        <showcard v-bind:fresh = "true"
+        <showcard  v-bind:fresh = true
           v-bind:ref-message="item[2]" v-bind:id="item[0]" v-bind:des="item[1]" v-bind:ref-messagefull="item[3]"
        ></showcard>
       </ul>

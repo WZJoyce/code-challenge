@@ -9,15 +9,16 @@
         type="text"
         placeholder="Search..."
         v-model="search"
-        @keyup.enter="searchImages"
+        @keyup.enter="valuetransform"
       />
        
       <button
         class="bg-white w-auto flex justify-end items-center text-gray-800 rounded p-2 hover:text-gray-400"
-        @click="searchImages"
+        @click="valuetransform"
       >
-        
-        <a href="/home" class="font-bold text-xs" >Search</a>
+    
+
+        <a class="font-bold text-xs" :href="'/home?data='+this.search">Search</a>
       </button>
      
     </div>
@@ -26,18 +27,26 @@
 </template>
 
 <script>
+
 export default {
+ 
   name: "searchPage",
+  components:{
+   
+
+  },
   data() {
     return {
-      search: "",
+      search:"",
+      data:3,
     };
   },
   methods: {
-    searchImages() {
-      this.$emit("search", this.search);
-      console.log("search", this.search)
-    },
+   
+    valuetransform() {
+      
   },
-};
+
+},
+}
 </script>

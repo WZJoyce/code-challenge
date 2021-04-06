@@ -1,6 +1,6 @@
 <template>
   <nav
-    class=" relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-800
+    class=" relative flex flex-wrap items-center justify-between px-2 py-3 bg-white
  mb-3"
   >
     <div
@@ -13,7 +13,7 @@
         <ul class="flex flex-col lg:flex-row list-none ml-auto">
           <li class="nav-item">
             <a
-              class="px-3 py-2 flex items-center text-xs font-bold leading-snug text-white hover:opacity-75"
+              class="px-3 py-2 flex items-center text-xs font-bold leading-snug text-gray-800 hover:text-gray-400"
               href="/"
             >
               Home
@@ -21,7 +21,7 @@
           </li>
           <li class="nav-item">
             <a
-              class="px-3 py-2 flex items-center text-xs font-bold leading-snug text-white hover:opacity-75"
+              class="px-3 py-2 flex items-center text-xs font-bold leading-snug text-gray-800 hover:text-gray-400"
               href="/medialibrary" 
             >
            

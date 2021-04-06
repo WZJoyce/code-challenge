@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-  <searchpage v-show="false"  @search="searchValue"></searchpage>
+  
     <navbar @search="searchValue"></navbar>
     <div>
     <circlespinner v-if="isLoading == true"></circlespinner>
@@ -12,7 +12,7 @@
       :break-by-container="true"
     >
       <ul v-if="imagesList.length != 0" v-for="item in imagesList">
-        <showcard fresh = "false"
+        <showcard fresh = false
           v-bind:ref-message="item.urls.small" v-bind:id="item.id" v-bind:ref-messagefull="item.urls.full"
        ></showcard>
       </ul>
@@ -29,8 +29,7 @@ import Showcard from "@/components/commons/Showcard";
 import VueFlexWaterfall from "@/components/commons/Waterfall";
 import Prenext from "@/components/commons/Prenext";
 import Circlespinner  from '@/components/commons/Circlespinner';
-import EnlargeableImage from '@/components/commons/EnlargeableImage';
-import searchPage from '@/components/searchPage';
+
 export default {
   name: "home",
   components: {
@@ -39,8 +38,6 @@ export default {
     VueFlexWaterfall,
     Prenext,
     Circlespinner,
-    EnlargeableImage,
-    searchPage,
   },
   data() {
     return {
@@ -53,7 +50,14 @@ export default {
       isLoading: false,
     };
   },
+  created(){
+      var data = window.location.href.split("?")[1].split("=")[1];
+      this.search=data;
+      this.searchValue(data);
 
+  },
+  
+ 
   methods: {
     changePage: function(page) {
       // prenext give the value to pageValue
@@ -65,9 +69,14 @@ export default {
       if (search.length == 0) return
       this.search = search
       this.page = 1
+      console.log("search3"+this.search)
+      
+       
       this.searchImages()
     },
     searchImages: function() {
+      
+     
       this.isLoading=true;
       var vm = this;
       let data = new URLSearchParams({
@@ -77,6 +86,7 @@ export default {
       }).toString();
       axios.get(this.$page.props.unsplashSearch + "?" + data)
         .then(function(response) {
+          
            vm.isLoading=false;
           console.log(response);
           vm.imagesList = response.data.results;

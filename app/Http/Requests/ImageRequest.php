@@ -28,6 +28,7 @@ class ImageRequest extends FormRequest
            
             'description'=>'required|string',
             'url'=>'required|string',
+            'urlfull'=>'required|string',
             
         ];
     }

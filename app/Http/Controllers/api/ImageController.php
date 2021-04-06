@@ -31,6 +31,7 @@ class ImageController extends Controller
            
             'description' => $request->description,
             'url' => $request->url,
+            'urlfull'=>$request->urlfull,
         ]);
         }else{
             $image->update([
@@ -62,14 +63,10 @@ class ImageController extends Controller
     }*/
     
     
-    public function destroy($id)
+    public function destroy(Image $image)
     {
-        echo $id;
-        $image=Image::where('id', $id)->first();
-        $image->delete();
-        
-        
-       
+        logger($image);
+        return $image->delete();   
     }
 
     public function index(Image $image)
@@ -78,7 +75,7 @@ class ImageController extends Controller
         $res = DB::table('images')->get();
         $arr=[];
         foreach ($res as $re) {
-            $tem = array($re->id,$re->description,$re->url); 
+            $tem = array($re->id,$re->description,$re->url, $re->urlfull); 
             $arr[]=$tem;
         }
        return $arr;

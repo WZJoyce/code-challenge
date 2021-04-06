@@ -31,7 +31,7 @@ Route::get('images', [ImageController::class, 'index'])->name('image_show');
 
 //Route::put('images', [ImageController::class, 'update'])->name('image_update');
 
-Route::delete('images', [ImageController::class, 'destroy'])->name('image_destroy');
+Route::delete('images/{image}', [ImageController::class, 'destroy'])->name('image_destroy');
 
 
 

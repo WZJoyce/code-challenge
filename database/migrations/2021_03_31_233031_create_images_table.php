@@ -17,7 +17,8 @@ class CreateImagesTable extends Migration
             $table->string('id');
             
             $table->text('description')->nullable();
-            $table->longText('url');    
+            $table->longText('url'); 
+            $table->longText('urlfull');     
             $table->timestampsTz();
         });
     }

@@ -2,7 +2,8 @@
   <div
     class="max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
   >
-    <img class="object-cover w-full h-auto mt-2" v-bind:src="refMessage" />
+    <enlargeable-image class="object-cover w-full h-auto mt-2" v-bind:src="refMessage" v-bind:src_large="refMessagefull"/>
+
    <div class="px-2 border-b border-black" v-if="des"> <p v-bind:des="des" class="font-serif font-normal">{{des}}</p> </div> 
     <div class="flex items-center justify-between px-4 py-2 bg-white">
       <button
@@ -57,6 +58,7 @@
 
 <script>
 import Modal from "@burhanahmeed/vue-modal-2";
+import EnlargeableImage from '@/components/commons/EnlargeableImage';
 export default {
   name: "Showcard",
   props: {
@@ -64,18 +66,23 @@ export default {
     showImage: String,
     searchMassege: String,
     refMessage: String,
+    refMessagefull:String,
     revealBar: Boolean,
     id: String,
     description: String,
     des:String,
+    fresh:Boolean,
+    
     
   },
   components: {
     Modal,
+    EnlargeableImage,
   },
   data() {
     return {
       open: false,
+     
     };
   },
   methods: {
@@ -88,15 +95,23 @@ export default {
       // axios post to backend
       console.log("id----" + vm.id);
       console.log("url----" + vm.refMessage);
+      console.log("urlfull----" + vm.refMessagefull);
+      
       console.log("des   " + vm.description);
     
       axios.post(this.$page.props.image, 
        { id: vm.id,
         description: vm.description,
-        url: vm.refMessage,})
+        url: vm.refMessage,urlfull:vm.refMessagefull})
         .then(function(response) {
           console.log("success");
           vm.description='';
+          console.log("fresh", vm.fresh);
+          if(vm.fresh==true){
+            location.reload();
+          }
+          
+        
           
         })
         .catch((err) => console.error(err));
@@ -119,10 +134,13 @@ export default {
     },*/
     destroyImages:function(){
        var vm = this;
-      axios.delete(this.$page.props.imageDestroy+vm.id)
+       let url = this.$page.props.imageDestroy.replace(':id', vm.id)
+       console.log(url)
+      axios.delete(url)
       .then(function(response){
        
         console.log("delete id ");
+        location.reload(); 
         
       })
       .catch(err => console.error(err.response));

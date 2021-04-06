@@ -11,26 +11,20 @@ class DashboardController extends Controller
     {
         // parent::__construct();
         Inertia::share([
-            'unsplashSearch' => route('unsplash_search')
-        ]);
-        Inertia::share([
-            'image' => route('image')
-        ]);
-        Inertia::share([
-            'imageShow' => route('image_show')
+            'unsplashSearch' => route('unsplash_search'),
+            'image' => route('image'),
+            'imageShow' => route('image_show'),
+            'imageDestroy' => route('image_destroy', ':id')
         ]);
         /*Inertia::share([
             'imageUpdate' => route('image_update')
         ]);*/
-        Inertia::share([
-            'imageDestroy' => route('image_destroy')
-        ]);
     }
 
-    public function searchImage()
+    public function search()
     {
-        return Inertia::render('searchImage',[
-            
+        return Inertia::render('search',[
+            'data' => 'test'
         ]);
     }
     public function mediaLibrary()

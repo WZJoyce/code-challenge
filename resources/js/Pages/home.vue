@@ -12,12 +12,12 @@
       :break-by-container="true"
     >
       <ul v-if="imagesList.length != 0" v-for="item in imagesList">
-        <showcard fresh = false
+        <showcard  v-if="isLoading == false" fresh = false
           v-bind:ref-message="item.urls.small" v-bind:id="item.id" v-bind:ref-messagefull="item.urls.full"
        ></showcard>
       </ul>
     </vue-flex-waterfall>
-    <div class="flex justify-center" v-if="imagesList.length != 0">
+    <div class="flex justify-center" v-if="imagesList.length != 0 &&  isLoading == false">
       <prenext :page="page" :totalPages="totalPages" @change-page="changePage" class="py-12"></prenext>
     </div>
   </div>
@@ -63,20 +63,18 @@ export default {
       // prenext give the value to pageValue
       this.page = page;
       console.log('Home - new page: ', this.page);
+      
       this.searchImages()
     },
     searchValue(search) {
       if (search.length == 0) return
       this.search = search
       this.page = 1
-      console.log("search3"+this.search)
-      
-       
+     
+      console.log("search3"+this.search)  
       this.searchImages()
     },
     searchImages: function() {
-      
-     
       this.isLoading=true;
       var vm = this;
       let data = new URLSearchParams({

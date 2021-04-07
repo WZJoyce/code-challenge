@@ -9,16 +9,14 @@
         type="text"
         placeholder="Search..."
         v-model="search"
-        @keyup.enter="valuetransform"
+        
       />
        
       <button
-        class="bg-white w-auto flex justify-end items-center text-gray-800 rounded p-2 hover:text-gray-400"
+        class="bg-white hover:bg-white w-auto flex justify-end items-center text-gray-800  p-2 hover:text-gray-400"
         @click="valuetransform"
       >
-    
-
-        <a class="font-bold text-xs" :href="'/home?data='+this.search">Search</a>
+         <a class="font-bold text-xs" :href="'/home?data='+this.search">Search</a>
       </button>
      
     </div>

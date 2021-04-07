@@ -1,7 +1,7 @@
 <template>
   <div id="home">
   
-    <navbar @search="searchValue"></navbar>
+    <navbar @search="searchValue" :searchBar=true></navbar>
     <div>
     <circlespinner v-if="isLoading == true"></circlespinner>
   </div>
@@ -13,8 +13,8 @@
     >
       <ul v-if="imagesList.length != 0" v-for="item in imagesList">
         <showcard  v-if="isLoading == false" fresh = false
-          v-bind:ref-message="item.urls.small" v-bind:id="item.id" v-bind:ref-messagefull="item.urls.full"
-     :border= "highlightImages(item.id)"  btnDelete="0" ></showcard>
+          v-bind:ref-message="item.urls.small"  v-bind:id="item.id" v-bind:ref-messagefull="item.urls.full"
+     btnDelete="0" home="true" ></showcard>
       </ul>
     </vue-flex-waterfall>
     <div class="flex justify-center" v-if="imagesList.length != 0 &&  isLoading == false">
@@ -48,7 +48,7 @@ export default {
       totalPages: 0,
       noResults: true,
       isLoading: false,
-      
+     
     };
   },
   created(){
@@ -98,18 +98,27 @@ export default {
         })
         .catch(err => console.error(err));
     },
-    highlightImages:  function(id) {
+   /* highlightImages: function(id) {
       var vm = this;
+       console.log('tem--------2', vm.tem);
       let url = this.$page.props.imageHighlight.replace(":id", id);
-      axios.get(url)
-       .then(function(response) {
-         var tem = response.data;
+      axios
+      .get(url)
+      .then(function(response) {
+       
+       
+         if(response.data==1)
+         {
+            vm.tem = true;
+             console.log('tem--------1', vm.tem);
+         }
          
-       })
-        .catch((err) => console.error(err));
+      })
+      .catch((err) => console.error(err));
+      
         
        
-    },
+    },*/
 
   },
 };

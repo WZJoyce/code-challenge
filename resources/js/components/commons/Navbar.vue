@@ -29,7 +29,7 @@
             
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-show="searchBar">
             <div class="shadow flex">
               <input
                 class="w-full px-3 py-2 rounded p-2"
@@ -56,6 +56,10 @@
 <script>
 export default {
   name: "Navbar",
+  props:{
+    searchBar:Boolean,
+
+  },
   data() {
     return {
       search: "",

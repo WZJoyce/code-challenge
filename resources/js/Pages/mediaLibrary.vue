@@ -2,7 +2,7 @@
 
   <div id="mediaLibrary">
   
-    <navbar></navbar>
+    <navbar :searchBar=false ></navbar>
     <div>
     <circlespinner v-if="isLoading == true"></circlespinner>
   </div>

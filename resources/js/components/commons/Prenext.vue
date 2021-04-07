@@ -38,7 +38,7 @@ export default {
       this.page=page;
       console.log('current page: ', this.page)
       console.log('total change: ', this.totalPages)
-      if (this.page <= 1 || this.page>this.totalPages) {
+      if (this.page < 1 || this.page>this.totalPages) {
         
         return;
       }

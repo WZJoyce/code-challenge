@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" :style="styleImages()" >
+  <div :class=" {'max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800': true,'border-green-800 border-2 rounded':(tem&&home)}"  >
    
     <enlargeable-image
       class="object-cover w-full h-auto mt-2"
@@ -77,19 +77,27 @@ export default {
     description: String,
     des: String,
     fresh: Boolean,
-    border:Boolean,
+    isborder:Boolean,
     btnDelete:String,
-    tem:Promise,
+    home:Boolean,
+    
+    
     
   },
   components: {
     Modal,
     EnlargeableImage,
   },
+  created(){
+    this.highlightImages();
+  },
   data() {
     return {
       open: false,
-      styleObject:{ },
+      tem:false,
+     
+     
+      
       
     };
   },
@@ -101,12 +109,6 @@ export default {
       var vm = this;
       this.open = !this.open;
       // axios post to backend
-      console.log("id----" + vm.id);
-      console.log("url----" + vm.refMessage);
-      console.log("urlfull----" + vm.refMessagefull);
-
-      console.log("des   " + vm.description);
-
       axios
         .post(this.$page.props.image, {
           id: vm.id,
@@ -115,11 +117,12 @@ export default {
           urlfull: vm.refMessagefull,
         })
         .then(function(response) {
+        
           console.log("success");
           vm.description = "";
           console.log("fresh", vm.fresh);
           if (vm.fresh == true) {
-            location.reload();
+            location.reload();  
           }
         })
         .catch((err) => console.error(err));
@@ -152,20 +155,39 @@ export default {
         })
         .catch((err) => console.error(err.response));
     },
-    styleImages:function(){
-      if (this.border==true){
+    /*styleImages:function(){
+      if (this.isborder==true){
         this.styleObject={ border: '1px solid green'};
-        console.log("border----------", this.border);
+        console.log("isborder----------", this.isborder);
        
       } 
-      console.log("border----------false", this.border);
+      console.log("isborder----------false", this.isborder);
          return this.styleObject;
 
-    }
+    }*/
+    highlightImages: function() {
+      var vm = this;
+       console.log('tem--------2', vm.tem);
+        console.log('id--------2', vm.this);
+
+      let url = this.$page.props.imageHighlight.replace(":id", vm.id);
+      axios
+      .get(url)
+      .then(function(response) {
+       
+       
+         if(response.data==1)
+         {
+            vm.tem = true;
+             console.log('tem--------1', vm.tem);
+         }
+         
+      })
+      .catch((err) => console.error(err));
  
    
   },
-};
+}
+}
 </script>
 
->

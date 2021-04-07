@@ -14,7 +14,8 @@ class DashboardController extends Controller
             'unsplashSearch' => route('unsplash_search'),
             'image' => route('image'),
             'imageShow' => route('image_show'),
-            'imageDestroy' => route('image_destroy', ':id')
+            'imageDestroy' => route('image_destroy', ':id'),
+            'imageHighlight' => route('image_highlight', ':id')
         ]);
         /*Inertia::share([
             'imageUpdate' => route('image_update')

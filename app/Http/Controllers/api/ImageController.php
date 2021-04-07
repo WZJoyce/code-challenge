@@ -48,19 +48,21 @@ class ImageController extends Controller
         ]);*/
     }
 
-   /* public function update(ImageRequest $request)
+    public function highlight($image)
     {
-        //find image then update escription
-        $image=Image::where('id', $request->id)->first();
-        echo "image ",$image;
-        if($image==null){
+        logger($image);
+        //find image then hightlight
+       
+       $find=Image::where('id', $image)->first();
+      
+        if($find==true){
            
-            return;
+            return true;
         }
-        $image->update([
-            'description'=>$request->description
-        ]);
-    }*/
+        return false;
+       
+        
+    }
     
     
     public function destroy(Image $image)

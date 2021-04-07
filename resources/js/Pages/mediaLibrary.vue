@@ -15,7 +15,7 @@
       <ul v-if="imagesList.length != 0" v-for="item in imagesList">
         <showcard  v-bind:fresh = true
           v-bind:ref-message="item[2]" v-bind:id="item[0]" v-bind:des="item[1]" v-bind:ref-messagefull="item[3]"
-       ></showcard>
+      btnDelete="1" ></showcard>
       </ul>
     </vue-flex-waterfall>
    </div>
@@ -56,8 +56,7 @@ export default {
       console.log(this.$page.props.imageShow);
       axios.get(this.$page.props.imageShow)
         .then(function(response){
-        vm.isLoading=false;
-         
+        vm.isLoading=false;   
         console.log("show image  "+response.data[2]);  
         vm.imagesList = response.data; 
         console.log("show list  "+vm.imagesList[2]); 

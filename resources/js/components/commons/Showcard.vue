@@ -1,22 +1,27 @@
 <template>
-  <div
-    class="max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
-  >
-    <enlargeable-image class="object-cover w-full h-auto mt-2" v-bind:src="refMessage" v-bind:src_large="refMessagefull"/>
+  <div class="max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" :style="styleImages()" >
+   
+    <enlargeable-image
+      class="object-cover w-full h-auto mt-2"
+      v-bind:src="refMessage"
+      v-bind:src_large="refMessagefull"
+    />
 
-   <div class="px-2 border-b border-black" v-if="des"> <p v-bind:des="des" class="font-serif font-normal">{{des}}</p> </div> 
+    <div class="px-2 border-b border-black" v-if="des">
+      <p v-bind:des="des" class="font-serif font-normal">{{ des }}</p>
+    </div>
     <div class="flex items-center justify-between px-4 py-2 bg-white">
       <button
         class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none"
-        @click.stop="editClick"  
+        @click.stop="editClick"
       >
         Edit
       </button>
       <button
         class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none"
-        @click="destroyImages"
+        @click="destroyImages" v-if="btnDelete==1"
       >
-       Delete
+        Delete
       </button>
     </div>
     <div class="px-4 py-2 items-center">
@@ -44,7 +49,6 @@
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
               <button
                 class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none"
-               
               >
                 Save
               </button>
@@ -53,12 +57,13 @@
         </form>
       </div>
     </div>
+  
   </div>
 </template>
 
 <script>
 import Modal from "@burhanahmeed/vue-modal-2";
-import EnlargeableImage from '@/components/commons/EnlargeableImage';
+import EnlargeableImage from "@/components/commons/EnlargeableImage";
 export default {
   name: "Showcard",
   props: {
@@ -66,13 +71,15 @@ export default {
     showImage: String,
     searchMassege: String,
     refMessage: String,
-    refMessagefull:String,
+    refMessagefull: String,
     revealBar: Boolean,
     id: String,
     description: String,
-    des:String,
-    fresh:Boolean,
-    
+    des: String,
+    fresh: Boolean,
+    border:Boolean,
+    btnDelete:String,
+    tem:Promise,
     
   },
   components: {
@@ -82,7 +89,8 @@ export default {
   data() {
     return {
       open: false,
-     
+      styleObject:{ },
+      
     };
   },
   methods: {
@@ -96,27 +104,27 @@ export default {
       console.log("id----" + vm.id);
       console.log("url----" + vm.refMessage);
       console.log("urlfull----" + vm.refMessagefull);
-      
+
       console.log("des   " + vm.description);
-    
-      axios.post(this.$page.props.image, 
-       { id: vm.id,
-        description: vm.description,
-        url: vm.refMessage,urlfull:vm.refMessagefull})
+
+      axios
+        .post(this.$page.props.image, {
+          id: vm.id,
+          description: vm.description,
+          url: vm.refMessage,
+          urlfull: vm.refMessagefull,
+        })
         .then(function(response) {
           console.log("success");
-          vm.description='';
+          vm.description = "";
           console.log("fresh", vm.fresh);
-          if(vm.fresh==true){
+          if (vm.fresh == true) {
             location.reload();
           }
-          
-        
-          
         })
         .catch((err) => console.error(err));
     },
-   /* updateImages:function(){
+    /* updateImages:function(){
       var vm = this;
       axios.put(this.$page.props.imageUpdate,  { id: vm.id,
         description: vm.description,
@@ -132,20 +140,32 @@ export default {
       .catch(err => console.error(err));
 
     },*/
-    destroyImages:function(){
-       var vm = this;
-       let url = this.$page.props.imageDestroy.replace(':id', vm.id)
-       console.log(url)
-      axios.delete(url)
-      .then(function(response){
-       
-        console.log("delete id ");
-        location.reload(); 
-        
-      })
-      .catch(err => console.error(err.response));
-
+    destroyImages: function() {
+      var vm = this;
+      let url = this.$page.props.imageDestroy.replace(":id", vm.id);
+      console.log(url);
+      axios
+        .delete(url)
+        .then(function(response) {
+          console.log("delete id ");
+          location.reload();
+        })
+        .catch((err) => console.error(err.response));
     },
+    styleImages:function(){
+      if (this.border==true){
+        this.styleObject={ border: '1px solid green'};
+        console.log("border----------", this.border);
+       
+      } 
+      console.log("border----------false", this.border);
+         return this.styleObject;
+
+    }
+ 
+   
   },
 };
 </script>
+
+>

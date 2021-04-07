@@ -3,11 +3,13 @@
     <button class="page-button" @click="changePage(1)">
       First
     </button>
-    <button class="page-button" @click="changePage(page - 1)">
+    <button class="page-button" @click="changePage(page - 1)" v-if="this.page!=1">
       Prev
     </button>
     <span>Page: {{ page }}</span>
-    <button class="page-button" @click="changePage(page + 1)">
+    </button>
+
+    <button class="page-button" @click="changePage(page + 1)" v-if="this.page!=this.totalPages">
       Next
     </button>
     <button class="page-button" @click="changePage(totalPages)">
@@ -33,12 +35,16 @@ export default {
   },
   methods: {
     changePage: function(page) {
+      this.page=page;
       console.log('current page: ', this.page)
-      console.log('page change: ', page)
-      if (this.page == 1 && page <= 1) {
+      console.log('total change: ', this.totalPages)
+      if (this.page <= 1 || this.page>this.totalPages) {
+        
         return;
       }
+     
       this.$emit('change-page', page)
+     
     }
   },
 };

@@ -14,7 +14,7 @@
       <ul v-if="imagesList.length != 0" v-for="item in imagesList">
         <showcard  v-if="isLoading == false" fresh = false
           v-bind:ref-message="item.urls.small" v-bind:id="item.id" v-bind:ref-messagefull="item.urls.full"
-       ></showcard>
+     :border= "highlightImages(item.id)"  btnDelete="0" ></showcard>
       </ul>
     </vue-flex-waterfall>
     <div class="flex justify-center" v-if="imagesList.length != 0 &&  isLoading == false">
@@ -48,6 +48,7 @@ export default {
       totalPages: 0,
       noResults: true,
       isLoading: false,
+      
     };
   },
   created(){
@@ -93,9 +94,23 @@ export default {
             vm.noResults = true;
             return;
           }
+            window.scrollTo(0, 0);
         })
         .catch(err => console.error(err));
     },
+    highlightImages:  function(id) {
+      var vm = this;
+      let url = this.$page.props.imageHighlight.replace(":id", id);
+      axios.get(url)
+       .then(function(response) {
+         var tem = response.data;
+         
+       })
+        .catch((err) => console.error(err));
+        
+       
+    },
+
   },
 };
 </script>

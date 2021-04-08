@@ -14,7 +14,7 @@
           <li class="nav-item">
             <a
               class="px-3 py-2 flex items-center text-xs font-bold leading-snug text-gray-800 hover:text-gray-400"
-              href="/home"
+              href="/"
             >
               Home
             </a>

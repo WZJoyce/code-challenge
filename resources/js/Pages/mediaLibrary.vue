@@ -40,6 +40,7 @@ export default {
     return {
       imagesList: [],
       isLoading: true,
+      
     };
   },
  

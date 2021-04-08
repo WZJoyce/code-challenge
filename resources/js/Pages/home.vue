@@ -1,7 +1,8 @@
 <template>
   <div id="home">
-  
-    <navbar @search="searchValue" :searchBar=true></navbar>
+    <search v-if="search==''"@search="searchValue" ></search>
+    <navbar v-else @search="searchValue" :searchBar=true></navbar>
+   
     <div>
     <circlespinner v-if="isLoading == true"></circlespinner>
   </div>
@@ -25,6 +26,7 @@
 
 <script>
 import Navbar from "@/components/commons/Navbar";
+import Search from "@/components/commons/Search";
 import Showcard from "@/components/commons/Showcard";
 import VueFlexWaterfall from "@/components/commons/Waterfall";
 import Prenext from "@/components/commons/Prenext";
@@ -38,6 +40,7 @@ export default {
     VueFlexWaterfall,
     Prenext,
     Circlespinner,
+    Search,
   },
   data() {
     return {

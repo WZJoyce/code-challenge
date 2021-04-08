@@ -47,7 +47,7 @@
                     rows="3"
                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"
                     placeholder="Text"
-                  ></textarea>
+                 ></textarea>
                 </div>
               </div>
             </div>
@@ -108,6 +108,24 @@ export default {
       this.open = !this.open;
       
       console.log("description-----" + vm.description);
+      if(vm.description==null)
+      {
+        console.log("description55-----" + vm.description);
+          axios
+        .post(this.$page.props.image, {
+          id: vm.id,
+        
+          url: vm.refMessage,
+          urlfull: vm.refMessagefull,
+        })
+        .then(function(response) {
+          console.log("save sucess");
+          vm.tem=true;
+          vm.des=vm.description;
+          vm.description =null;
+        })
+        .catch((err) => console.error(err));
+      }else{
       
       // axios post to backend
       axios
@@ -121,9 +139,9 @@ export default {
           console.log("save sucess");
           vm.tem=true;
           vm.des=vm.description;
-          vm.description = "";
+          vm.description =null;
         })
-        .catch((err) => console.error(err));
+        .catch((err) => console.error(err));}
     },
     //delete a image in the media library
     destroyImages: function() {

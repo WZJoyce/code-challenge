@@ -116,12 +116,13 @@ export default {
           urlfull: vm.refMessagefull,
         })
         .then(function(response) {
-          console.log("success");
+          vm.tem=true;
+          vm.des=vm.description;
           vm.description = "";
-          console.log("fresh", vm.fresh);
-          if (vm.fresh == true) {
+         
+         /* if (vm.fresh == true) {
             location.reload();
-          }
+          }*/
         })
         .catch((err) => console.error(err));
     },
@@ -129,11 +130,10 @@ export default {
     destroyImages: function() {
       var vm = this;
       let url = this.$page.props.imageDestroy.replace(":id", vm.id);
-      console.log(url);
       axios
         .delete(url)
         .then(function(response) {
-          console.log("delete id ");
+          
           location.reload();
         })
         .catch((err) => console.error(err.response));
@@ -141,8 +141,6 @@ export default {
     //highlight images if they are in the media library
     highlightImages: function() {
       var vm = this;
-      
-
       let url = this.$page.props.imageHighlight.replace(":id", vm.id);
       axios
         .get(url)

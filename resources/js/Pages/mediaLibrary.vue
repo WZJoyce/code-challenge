@@ -44,24 +44,17 @@ export default {
   },
  
   created(){
-     
-     console.log("success", this.isLoading);
      this.libraryImages();
-     console.log("mounted");
   },
 
   methods: {
     //show images in the media library
     libraryImages: function() {
       var vm = this;
-      console.log(this.$page.props.imageShow);
       axios.get(this.$page.props.imageShow)
         .then(function(response){
-        vm.isLoading=false;   
-        console.log("show image  "+response.data[2]);  
-        vm.imagesList = response.data; 
-        console.log("show list  "+vm.imagesList[2]); 
-         
+        vm.isLoading=false;     
+        vm.imagesList = response.data;  
         })
         .catch(err => console.error(err));
        

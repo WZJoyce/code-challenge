@@ -63,8 +63,6 @@ export default {
     changePage: function(page) {
       //prenext give the value to pageValue
       this.page = page;
-      console.log('Home - new page: ', this.page);
-      
       this.searchImages()
     },
     //the search message
@@ -72,8 +70,6 @@ export default {
       if (search.length == 0) return
       this.search = search
       this.page = 1
-     
-      console.log("search3"+this.search)  
       this.searchImages()
     },
     //acquire the images from unsplash
@@ -87,9 +83,7 @@ export default {
       }).toString();
       axios.get(this.$page.props.unsplashSearch + "?" + data)
         .then(function(response) {
-          
            vm.isLoading=false;
-          console.log(response);
           vm.imagesList = response.data.results;
           vm.totalPages = response.data.total_pages;
           if (vm.totalPage === 0) {

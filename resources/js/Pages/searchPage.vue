@@ -39,12 +39,5 @@ export default {
       data:3,
     };
   },
-  methods: {
-   
-    valuetransform() {
-      
-  },
-
-},
 }
 </script>

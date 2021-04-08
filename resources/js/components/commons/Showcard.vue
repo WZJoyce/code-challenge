@@ -1,6 +1,10 @@
 <template>
-  <div :class=" {'max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800': true,'border-green-800 border-2 rounded':(tem&&home)}"  >
-   
+  <div
+    :class="{
+      'max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800': true,
+      'border-green-800 border-2 rounded': tem && home,
+    }"
+  >
     <enlargeable-image
       class="object-cover w-full h-auto mt-2"
       v-bind:src="refMessage"
@@ -19,7 +23,8 @@
       </button>
       <button
         class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none"
-        @click="destroyImages" v-if="btnDelete==1"
+        @click="destroyImages"
+        v-if="btnDelete == 1"
       >
         Delete
       </button>
@@ -57,7 +62,6 @@
         </form>
       </div>
     </div>
-  
   </div>
 </template>
 
@@ -77,34 +81,29 @@ export default {
     description: String,
     des: String,
     fresh: Boolean,
-    isborder:Boolean,
-    btnDelete:String,
-    home:Boolean,
-    
-    
-    
+    isborder: Boolean,
+    btnDelete: String,
+    home: Boolean,
   },
   components: {
     Modal,
     EnlargeableImage,
   },
-  created(){
+  created() {
     this.highlightImages();
   },
   data() {
     return {
       open: false,
-      tem:false,
-     
-     
-      
-      
+      tem: false,
     };
   },
   methods: {
+    //the edit area shows after clicking edit button
     editClick() {
       this.open = !this.open;
     },
+    //save a image to the media library
     imageSave() {
       var vm = this;
       this.open = !this.open;
@@ -117,32 +116,16 @@ export default {
           urlfull: vm.refMessagefull,
         })
         .then(function(response) {
-        
           console.log("success");
           vm.description = "";
           console.log("fresh", vm.fresh);
           if (vm.fresh == true) {
-            location.reload();  
+            location.reload();
           }
         })
         .catch((err) => console.error(err));
     },
-    /* updateImages:function(){
-      var vm = this;
-      axios.put(this.$page.props.imageUpdate,  { id: vm.id,
-        description: vm.description,
-        url: vm.refMessage,})
-      .then(function(response){
-        console.log(response);
-        if(response==false){
-          console.log("new");
-          vm.imageSave();
-        }
-       console.log("update descrption ", vm.id);
-      })
-      .catch(err => console.error(err));
-
-    },*/
+    //delete a image in the media library
     destroyImages: function() {
       var vm = this;
       let url = this.$page.props.imageDestroy.replace(":id", vm.id);
@@ -155,39 +138,22 @@ export default {
         })
         .catch((err) => console.error(err.response));
     },
-    /*styleImages:function(){
-      if (this.isborder==true){
-        this.styleObject={ border: '1px solid green'};
-        console.log("isborder----------", this.isborder);
-       
-      } 
-      console.log("isborder----------false", this.isborder);
-         return this.styleObject;
-
-    }*/
+    //highlight images if they are in the media library
     highlightImages: function() {
       var vm = this;
-       console.log('tem--------2', vm.tem);
-        console.log('id--------2', vm.this);
+      
 
       let url = this.$page.props.imageHighlight.replace(":id", vm.id);
       axios
-      .get(url)
-      .then(function(response) {
-       
-       
-         if(response.data==1)
-         {
+        .get(url)
+        .then(function(response) {
+          if (response.data == 1) {
             vm.tem = true;
-             console.log('tem--------1', vm.tem);
-         }
-         
-      })
-      .catch((err) => console.error(err));
- 
-   
+            
+          }
+        })
+        .catch((err) => console.error(err));
+    },
   },
-}
-}
+};
 </script>
-

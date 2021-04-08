@@ -51,6 +51,7 @@ export default {
   },
 
   methods: {
+    //show images in the media library
     libraryImages: function() {
       var vm = this;
       console.log(this.$page.props.imageShow);

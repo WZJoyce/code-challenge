@@ -34,6 +34,7 @@ export default {
     return {}
   },
   methods: {
+    //the previous page, the next page, the first page, the last page
     changePage: function(page) {
       this.page=page;
       console.log('current page: ', this.page)

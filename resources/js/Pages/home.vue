@@ -12,9 +12,9 @@
       :break-by-container="true"
     >
       <ul v-if="imagesList.length != 0" v-for="item in imagesList">
-        <showcard  v-if="isLoading == false" fresh = false
+        <showcard  v-if="isLoading == false" :fresh = "false"
           v-bind:ref-message="item.urls.small"  v-bind:id="item.id" v-bind:ref-messagefull="item.urls.full"
-     btnDelete="0" home="true" ></showcard>
+     btnDelete="0" :home="true" ></showcard>
       </ul>
     </vue-flex-waterfall>
     <div class="flex justify-center" v-if="imagesList.length != 0 &&  isLoading == false">
@@ -61,12 +61,13 @@ export default {
  
   methods: {
     changePage: function(page) {
-      // prenext give the value to pageValue
+      //prenext give the value to pageValue
       this.page = page;
       console.log('Home - new page: ', this.page);
       
       this.searchImages()
     },
+    //the search message
     searchValue(search) {
       if (search.length == 0) return
       this.search = search
@@ -75,6 +76,7 @@ export default {
       console.log("search3"+this.search)  
       this.searchImages()
     },
+    //acquire the images from unsplash
     searchImages: function() {
       this.isLoading=true;
       var vm = this;
@@ -98,27 +100,7 @@ export default {
         })
         .catch(err => console.error(err));
     },
-   /* highlightImages: function(id) {
-      var vm = this;
-       console.log('tem--------2', vm.tem);
-      let url = this.$page.props.imageHighlight.replace(":id", id);
-      axios
-      .get(url)
-      .then(function(response) {
-       
-       
-         if(response.data==1)
-         {
-            vm.tem = true;
-             console.log('tem--------1', vm.tem);
-         }
-         
-      })
-      .catch((err) => console.error(err));
-      
-        
-       
-    },*/
+ 
 
   },
 };

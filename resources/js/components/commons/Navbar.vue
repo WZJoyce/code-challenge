@@ -22,11 +22,9 @@
           <li class="nav-item">
             <a
               class="px-3 py-2 flex items-center text-xs font-bold leading-snug text-gray-800 hover:text-gray-400"
-              href="/medialibrary" 
+              href="/medialibrary"
             >
-           
               Media Library
-            
             </a>
           </li>
           <li class="nav-item" v-show="searchBar">
@@ -56,9 +54,8 @@
 <script>
 export default {
   name: "Navbar",
-  props:{
-    searchBar:Boolean,
-
+  props: {
+    searchBar: Boolean,
   },
   data() {
     return {
@@ -66,9 +63,10 @@ export default {
     };
   },
   methods: {
+    //pass data to the home page
     searchImages() {
-      this.$emit('search', this.search)
-    }
+      this.$emit("search", this.search);
+    },
   },
 };
 </script>

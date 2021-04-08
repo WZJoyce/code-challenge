@@ -80,7 +80,6 @@ export default {
     id: String,
     description: String,
     des: String,
-    fresh: Boolean,
     isborder: Boolean,
     btnDelete: String,
     home: Boolean,
@@ -107,6 +106,9 @@ export default {
     imageSave() {
       var vm = this;
       this.open = !this.open;
+      
+      console.log("description-----" + vm.description);
+      
       // axios post to backend
       axios
         .post(this.$page.props.image, {
@@ -116,13 +118,10 @@ export default {
           urlfull: vm.refMessagefull,
         })
         .then(function(response) {
+          console.log("save sucess");
           vm.tem=true;
           vm.des=vm.description;
           vm.description = "";
-         
-         /* if (vm.fresh == true) {
-            location.reload();
-          }*/
         })
         .catch((err) => console.error(err));
     },
@@ -132,8 +131,7 @@ export default {
       let url = this.$page.props.imageDestroy.replace(":id", vm.id);
       axios
         .delete(url)
-        .then(function(response) {
-          
+        .then(function(response) { 
           location.reload();
         })
         .catch((err) => console.error(err.response));

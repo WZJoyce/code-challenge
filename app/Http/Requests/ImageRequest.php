@@ -26,7 +26,7 @@ class ImageRequest extends FormRequest
         return [
             'id'=>'required|min:1|string',
            
-            'description'=>'required|string',
+            'description'=>'string',
             'url'=>'required|string',
             'urlfull'=>'required|string',
             

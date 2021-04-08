@@ -8,15 +8,13 @@
 
         type="text"
         placeholder="Search..."
-        v-model="search"
-        
-      />
-       
+        v-model="message"/>
+      
       <button
         class="bg-white hover:bg-white w-auto flex justify-end items-center text-gray-800  p-2 hover:text-gray-400"
-        @click="valuetransform"
+        
       >
-         <a class="font-bold text-xs" :href="'/home?data='+this.search">Search</a>
+         <a class="font-bold text-xs" :href="'/home?data='+message">Search</a>
       </button>
      
     </div>
@@ -29,15 +27,13 @@
 export default {
  
   name: "searchPage",
-  components:{
-   
-
-  },
+  
   data() {
     return {
-      search:"",
       data:3,
+      message:"",
     };
   },
+ 
 }
 </script>

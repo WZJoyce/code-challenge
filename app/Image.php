@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
-    protected $fillable = ['id','description','url','urlfull'];
-
     use HasFactory;
+
+    protected $fillable = ['id','description','url','urlfull'];
+    
+    public $incrementing = false;
 }

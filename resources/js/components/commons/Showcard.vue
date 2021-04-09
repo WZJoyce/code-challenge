@@ -7,12 +7,12 @@
   >
     <enlargeable-image
       class="object-cover w-full h-auto mt-2"
-      v-bind:src="refMessage"
-      v-bind:src_large="refMessagefull"
+      :src="refMessage"
+      :src_large="refMessagefull"
     />
 
     <div class="px-2 border-b border-black" v-if="des">
-      <p v-bind:des="des" class="font-serif font-normal">{{ des }}</p>
+      <p :des="des" class="font-serif font-normal">{{ des }}</p>
     </div>
     <div class="flex items-center justify-between px-4 py-2 bg-white">
       <button
@@ -47,7 +47,7 @@
                     rows="3"
                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"
                     placeholder="Text"
-                 ></textarea>
+                  ></textarea>
                 </div>
               </div>
             </div>
@@ -106,42 +106,39 @@ export default {
     imageSave() {
       var vm = this;
       this.open = !this.open;
-      
       console.log("description-----" + vm.description);
-      if(vm.description==null)
-      {
+      if (vm.description == null) {
         console.log("description55-----" + vm.description);
-          axios
-        .post(this.$page.props.image, {
-          id: vm.id,
-        
-          url: vm.refMessage,
-          urlfull: vm.refMessagefull,
-        })
-        .then(function(response) {
-          console.log("save sucess");
-          vm.tem=true;
-          vm.des=vm.description;
-          vm.description =null;
-        })
-        .catch((err) => console.error(err));
-      }else{
-      
-      // axios post to backend
-      axios
-        .post(this.$page.props.image, {
-          id: vm.id,
-          description: vm.description,
-          url: vm.refMessage,
-          urlfull: vm.refMessagefull,
-        })
-        .then(function(response) {
-          console.log("save sucess");
-          vm.tem=true;
-          vm.des=vm.description;
-          vm.description =null;
-        })
-        .catch((err) => console.error(err));}
+        axios
+          .post(this.$page.props.image, {
+            id: vm.id,
+            url: vm.refMessage,
+            urlfull: vm.refMessagefull,
+          })
+          .then(function(response) {
+            console.log("save sucess");
+            vm.tem = true;
+            vm.des = vm.description;
+            vm.description = null;
+          })
+          .catch((err) => console.error(err));
+      } else {
+        // axios post to backend
+        axios
+          .post(this.$page.props.image, {
+            id: vm.id,
+            description: vm.description,
+            url: vm.refMessage,
+            urlfull: vm.refMessagefull,
+          })
+          .then(function(response) {
+            console.log("save sucess");
+            vm.tem = true;
+            vm.des = vm.description;
+            vm.description = null;
+          })
+          .catch((err) => console.error(err));
+      }
     },
     //delete a image in the media library
     destroyImages: function() {
@@ -149,7 +146,7 @@ export default {
       let url = this.$page.props.imageDestroy.replace(":id", vm.id);
       axios
         .delete(url)
-        .then(function(response) { 
+        .then(function(response) {
           location.reload();
         })
         .catch((err) => console.error(err.response));
@@ -163,7 +160,6 @@ export default {
         .then(function(response) {
           if (response.data == 1) {
             vm.tem = true;
-            
           }
         })
         .catch((err) => console.error(err));

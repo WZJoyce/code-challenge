@@ -17,17 +17,15 @@ class DashboardController extends Controller
             'imageDestroy' => route('image_destroy', ':id'),
             'imageHighlight' => route('image_highlight', ':id')
         ]);
-        /*Inertia::share([
-            'imageUpdate' => route('image_update')
-        ]);*/
+        
     }
 
-    public function searchPage()
+    /*public function searchPage()
     {
         return Inertia::render('searchPage',[
             'data' => 'test'
         ]);
-    }
+    }*/
     public function mediaLibrary()
     {
         return Inertia::render('mediaLibrary',[

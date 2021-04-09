@@ -13,17 +13,12 @@ class UnsplashController extends Controller
 {
     public function search(UnsplashSearchRequest $request)
     {
-        logger($request->search);
-
         $response = Http::get('https://api.unsplash.com/search/photos', [
             'client_id' => config('unsplash.client_id'),
             'query' => $request->search,
             'page' => $request->page ?? 1,
             'per_page' => $$request->perPage ?? 30
         ]);
-
-        logger($response);
-        logger($response->effectiveUri());
 
         if($response->failed()) {
             $response->throw()->json();

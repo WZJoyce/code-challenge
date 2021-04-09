@@ -11,6 +11,7 @@
       col-spacing="15"
       :break-at="{ 1327: 3, 990: 2, 655: 1 }"
       :break-by-container="true"
+      class="bg-gray-200"
     >
       <ul v-if="imagesList.length != 0" v-for="item in imagesList">
         <showcard

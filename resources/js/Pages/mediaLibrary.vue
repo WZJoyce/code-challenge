@@ -19,7 +19,8 @@
           btnDelete="1"
         ></showcard>
       </ul>
-    </vue-flex-waterfall>
+    </vue-flex-waterfall> 
+    <p class="text-center bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500 text-4xl font-bold" v-if="Isimage">No image</p>
   </div>
 </template>
 
@@ -37,11 +38,13 @@ export default {
     VueFlexWaterfall,
     Prenext,
     Circlespinner,
+   
   },
   data() {
     return {
       imagesList: [],
       isLoading: true,
+       Isimage: false,
     };
   },
 
@@ -59,6 +62,9 @@ export default {
           console.log(response.data);
           vm.isLoading = false;
           vm.imagesList = response.data;
+          if(!vm.imagesList.length){
+            vm.Isimage = true;
+          }
         })
         .catch((err) => console.error(err));
     },

@@ -1,12 +1,12 @@
 <template>
   <div
+    class="image-container dark:bg-gray-800"
     :class="{
-      'max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800': true,
       'border-green-800 border-2 rounded': tem && home,
     }"
   >
     <enlargeable-image
-      class="object-cover w-full h-auto mt-2"
+      class="object-cover w-full h-auto"
       :src="refMessage"
       :src_large="refMessagefull"
     />
@@ -21,6 +21,7 @@
       >
         Edit
       </button>
+      
       <button
         class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none"
         @click="destroyImages"
@@ -84,6 +85,7 @@ export default {
     btnDelete: String,
     home: Boolean,
   },
+  
   components: {
     Modal,
     EnlargeableImage,
@@ -158,8 +160,10 @@ export default {
       axios
         .get(url)
         .then(function(response) {
-          if (response.data == 1) {
+          if (response.data) {
+            //add border and description
             vm.tem = true;
+            vm.des=response.data.description;
           }
         })
         .catch((err) => console.error(err));
@@ -167,3 +171,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .image-container {
+    @apply max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg mt-4
+  }
+</style>

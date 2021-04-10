@@ -14,6 +14,7 @@
         <showcard
           :ref-message="item.url"
           :id="item.id"
+          :tit="item.title"
           :des="item.description"
           :ref-messagefull="item.urlfull"
           btnDelete="1"

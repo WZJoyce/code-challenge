@@ -15,6 +15,7 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->string('id');
+            $table->text('title')->nullable();
             $table->text('description')->nullable();
             $table->longText('url'); 
             $table->longText('urlfull');     
@@ -22,7 +23,7 @@ class CreateImagesTable extends Migration
         });
     }
 
-    /**
+    /**s
      * Reverse the migrations.
      *
      * @return void

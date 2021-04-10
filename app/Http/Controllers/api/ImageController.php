@@ -18,13 +18,15 @@ class ImageController extends Controller
         $image = Image::where('id', $request->id);
         if(!$image->exists()){
             Image::create([
-                'id'=> $request->id,
+                'id' => $request->id,
+                'title' => $request->title ?? null,
                 'description' => $request->description ?? null,
                 'url' => $request->url,
                 'urlfull' => $request->urlfull,
             ]);
         } else {
             $image->first()->update([
+                'title' => $request->title,
                 'description' => $request->description,
             ]);
         }

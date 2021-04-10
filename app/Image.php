@@ -9,7 +9,7 @@ class Image extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','description','url','urlfull'];
+    protected $fillable = ['id', 'title', 'description','url','urlfull'];
     
     public $incrementing = false;
 }

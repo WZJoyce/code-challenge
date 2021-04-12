@@ -9,9 +9,9 @@
           class="container px-4 mx-auto flex flex-wrap items-center justify-between"
         >
           <div
-            class="w-1/5 relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start"
+            class="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start"
           >
-          <img src="http://192.168.10.10/storage/logo-.png" class="shadow-lg rounded max-w-full h-auto align-middle border-none" href="https://www.vinteract.com.au/">
+          <img src="http://192.168.10.10/storage/logo-vinteract.png" class="shadow-lg rounded max-w-full h-auto align-middle border-none" href="https://www.vinteract.com.au/">
           </div>
           <div>
             <ul class="flex flex-col lg:flex-row list-none ml-auto">

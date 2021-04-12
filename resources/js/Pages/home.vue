@@ -1,8 +1,5 @@
 <template>
-  <div id="home">
-    <search v-if="search == ''" @search="searchValue"></search>
-    <navbar v-else @search="searchValue" :searchBar="true"></navbar>
-
+  <div>
     <div>
       <circlespinner v-if="isLoading"></circlespinner>
     </div>
@@ -48,8 +45,8 @@ import Circlespinner from "@/components/commons/Circlespinner";
 
 export default {
   name: "home",
-  components: {
-    Navbar,
+  layout:Navbar,
+  components:  {
     Showcard,
     VueFlexWaterfall,
     Prenext,
@@ -61,7 +58,7 @@ export default {
       imagesList: [],
       page: 1,
       perPage: 30,
-      search: "",
+      search: " ",
       totalPages: 0,
       noResults: true,
       isLoading: false,
@@ -73,7 +70,14 @@ export default {
     this.search = data;
     this.searchValue(data);
   },*/
-
+  watch: {
+    '$page.props.search'(val) {
+        if (val.click) {
+          this.searchValue()
+          this.$page.props.search.click = false
+        }
+    }
+  },
   methods: {
     changePage: function(page) {
       //prenext give the value to pageValue
@@ -81,9 +85,9 @@ export default {
       this.searchImages();
     },
     //the search message
-    searchValue(search) {
-      if (search.length == 0) return;
-      this.search = search;
+    searchValue() {
+      if (this.$page.props.search.length == 0) return;
+      this.search = this.$page.props.search.data;
       this.page = 1;
       this.searchImages();
     },

@@ -35,7 +35,11 @@ class DashboardController extends Controller
     public function home()
     {
         return Inertia::render('home',[
-            'data' => 'test'
+            'data' => 'test',
+            'search' => [
+                'click' => false,
+                'data' => null
+            ]
         ]);
     }
 

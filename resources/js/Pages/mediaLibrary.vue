@@ -1,6 +1,6 @@
 <template>
-  <div id="mediaLibrary">
-    <navbar :searchBar="false"></navbar>
+ <div>
+   
     <div>
       <circlespinner v-if="isLoading"></circlespinner>
     </div>
@@ -33,8 +33,8 @@ import Prenext from "@/components/commons/Prenext";
 import Circlespinner from "@/components/commons/Circlespinner";
 export default {
   name: "mediaLibrary",
+  layout:Navbar,
   components: {
-    Navbar,
     Showcard,
     VueFlexWaterfall,
     Prenext,

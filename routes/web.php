@@ -17,3 +17,4 @@ Route::get('/',[DashboardController::class,'searchPage']);
 Route::get('/home',[DashboardController::class,'home']);
 Route::get('/medialibrary',[DashboardController::class,'mediaLibrary']);
 
+

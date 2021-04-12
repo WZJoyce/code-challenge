@@ -11,7 +11,7 @@
       :src_large="refMessagefull"
     />
 
-    <div class="px-2 border-b border-black" v-if="title">
+    <div class="px-2 border-b border-black" v-if="titleshow">
       <p class="showcard-font">{{ titleshow }}</p>
     </div>
 

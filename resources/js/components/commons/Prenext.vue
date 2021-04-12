@@ -1,18 +1,18 @@
 <template>
   <div class="inline-flex items-center">
-    <button class="page-button" @click="changePage(1)">
+    <button class="page-button disabled:text-gray-300" @click="changePage(1)" :disabled="this.page==1">
         First
     </button>
-    <button class="page-button" @click="changePage(page - 1)" v-if="this.page!=1">
+    <button class="page-button disabled:text-gray-300" @click="changePage(page - 1)" :disabled="this.page==1">
       Prev
     </button>
     <span>Page: {{ page }}</span>
     </button>
 
-    <button class="page-button" @click="changePage(page + 1)" v-if="this.page!=this.totalPages">
+    <button class="page-button disabled:text-gray-300" @click="changePage(page + 1)" :disabled="this.page==this.totalPages">
       Next
     </button>
-    <button class="page-button" @click="changePage(totalPages)">
+    <button class="page-button disabled:text-gray-300" @click="changePage(totalPages)" :disabled="this.page==this.totalPages">
       Last
     </button>
   </div>

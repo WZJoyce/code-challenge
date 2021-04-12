@@ -14,7 +14,7 @@
       <button
         class="bg-white hover:bg-white w-auto flex justify-end items-center text-gray-800  p-2 hover:text-gray-400"
       >
-        <a class="font-bold text-xs" :href="'/home?data=' + message">Search</a>
+        <a class="font-bold text-xs" :href="'/home?query='+message">Search</a>
       </button>
     </div>
   </div>
@@ -23,6 +23,7 @@
 <script>
 export default {
   name: "searchPage",
+ 
 
   data() {
     return {

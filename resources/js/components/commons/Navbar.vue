@@ -9,14 +9,17 @@
           class="container px-4 mx-auto flex flex-wrap items-center justify-between"
         >
           <div
-            class="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start"
-          ></div>
+            class="w-1/5 relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start"
+          >
+          <img src="http://192.168.10.10/storage/logo-.png" class="shadow-lg rounded max-w-full h-auto align-middle border-none" href="https://www.vinteract.com.au/">
+          </div>
           <div>
             <ul class="flex flex-col lg:flex-row list-none ml-auto">
+            
               <li class="nav-item">
                 <inertia-link
                   class="px-3 py-2 flex items-center text-xs font-bold leading-snug text-gray-800 hover:text-gray-400"
-                  href="/"
+                  :href="'/home?query='+search"
                 >
                   Home
                 </inertia-link>
@@ -36,14 +39,14 @@
                     type="text"
                     placeholder="Search..."
                     v-model="search"
-                    @keyup.enter="searchImages"
+                  
                   />
 
                   <button
                     class="bg-white w-auto flex justify-end items-center text-gray-800 rounded p-2 hover:text-gray-400"
-                    @click="searchImages"
+                   
                   >
-                    <a class="font-bold text-xs">Search</a>
+                    <inertia-link :href="'/home?query='+search" class="font-bold text-xs">Search</inertia-link>
                   </button>
                 </div>
               </li>
@@ -53,14 +56,19 @@
       </nav>
     </header>
     <slot />
+  
   </main>
 </template>
 
 <script>
+
 export default {
   name: "Navbar",
   props: {
     searchBar: Boolean,
+  },
+  components:{
+    
   },
   data() {
     return {

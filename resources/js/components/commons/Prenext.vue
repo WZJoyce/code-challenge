@@ -1,7 +1,7 @@
 <template>
   <div class="inline-flex items-center">
     <button class="page-button" @click="changePage(1)">
-      First
+        First
     </button>
     <button class="page-button" @click="changePage(page - 1)" v-if="this.page!=1">
       Prev
@@ -18,6 +18,7 @@
   </div>
 </template>
 <script>
+
 export default {
   name: "Prenext",
   props: {

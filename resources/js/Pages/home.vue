@@ -64,12 +64,13 @@ export default {
       isLoading: false,
     };
   },
-  /*created() {
+  created() {
+    console.log("data....."+data);
     var data = window.location.href.split("?")[1].split("=")[1];
-    console.log(data);
+    console.log("data----",data);
     this.search = data;
     this.searchValue(data);
-  },*/
+  },
   watch: {
     '$page.props.search'(val) {
         if (val.click) {
@@ -85,9 +86,15 @@ export default {
       this.searchImages();
     },
     //the search message
-    searchValue() {
+    /*searchValue() {
       if (this.$page.props.search.length == 0) return;
       this.search = this.$page.props.search.data;
+      this.page = 1;
+      this.searchImages();
+    },*/
+    searchValue(data) {
+      if (this.search == 0) return;
+      this.search = data;
       this.page = 1;
       this.searchImages();
     },

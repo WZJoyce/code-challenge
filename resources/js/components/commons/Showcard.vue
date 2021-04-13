@@ -11,46 +11,46 @@
       :src_large="refMessagefull"
     />
 
-    <div class="px-2 border-b border-black" v-if="titleshow">
+    <div class="title-border" v-if="titleshow">
       <p class="showcard-font">{{ titleshow }}</p>
     </div>
 
     <div class="form-container">
-      <div class="mt-5 md:mt-0 md:col-span-2">
-        <div class="flex items-center justify-between px-4 py-2 bg-white">
+      <div class="form-col">
+        <div class="form-flex">
           <button
-            class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none"
+            class="form-button"
             @click.stop="editClick"
           >
            <p class="showcard-font">Edit</p>
           </button>
           <button
-            class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none"
+            class="form-button"
             @click="imageSave">
            <p class="showcard-font">Save</p>
           </button>
 
           <button
-            class="px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none"
+            class="form-button"
             @click="destroyImages"
             v-if="btnDelete == 1"
           >
            <p class="showcard-font">Delete</p>
           </button>
         </div>
-        <div class="shadow sm:rounded-md sm:overflow-hidden" v-show="open">
-          <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+        <div class="form-show" v-show="open">
+          <div class="form-size space-y-6">
            <span class="block">
              <p class="showcard-font">Title</p>
              <textarea  type = "number"
-    maxlength = "40" rows="2"   v-model.lazy="title" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md resize-none">{{title}}</textarea>
+    maxlength = "40" rows="2"   v-model.lazy="title" class="title-format">{{title}}</textarea>
            </span>
            <span class="block">
              <p class="showcard-font">Description</p>
                 <textarea
                   v-model.lazy="description"
                   rows="3"
-                  class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"
+                  class="description-format"
                   >{{ description }}</textarea>
            </span>
               
@@ -80,6 +80,7 @@ export default {
     isborder: Boolean,
     btnDelete: String,
     home: Boolean,
+    
   },
 
   components: {
@@ -98,14 +99,12 @@ export default {
       title: '',
       description: '',
       titleshow: '',
-
     };
   },
   methods: {
     //the edit area shows after clicking edit button
     editClick() {
       this.open = !this.open;
-      console.log("this.open:  ", this.open);
     },
     //save a image to the media library
     imageSave() {
@@ -120,7 +119,6 @@ export default {
             urlfull: vm.refMessagefull,
           })
           .then(function(response) {
-            console.log("save sucess");
             vm.tem = true;
             vm.titleshow = vm.title
           })
@@ -133,7 +131,7 @@ export default {
       axios
         .delete(url)
         .then(function(response) {
-          location.reload();
+         vm.$emit('reloaddata', true);
         })
         .catch((err) => console.error(err.response));
     },
@@ -150,8 +148,6 @@ export default {
             vm.title = response.data.title;
             vm.description = response.data.description;
             vm.titleshow = response.data.title;
-            console.log("tit---", vm.tit);
-            console.log("des----", vm.des);
           }
         })
         .catch((err) => console.error(err));
@@ -174,7 +170,33 @@ export default {
 .form-container{
    @apply px-4 py-2 items-center
 }
+.title-border{
+  @apply px-2 border-b border-black
+}
+.form-col{
+  @apply mt-5 md:mt-0 md:col-span-2
+}
+.form-flex{
+   @apply flex items-center justify-between px-4 py-2 bg-white
+}
+.form-button{
+  @apply px-2 py-1  text-gray-900 transition-colors duration-200 transform bg-white rounded hover:bg-blue-200 focus:bg-blue-300 focus:outline-none
+}
 
+.form-show{
+  @apply shadow sm:rounded-md sm:overflow-hidden
+}
 
+.form-size{
+  @apply px-4 py-5 bg-white sm:p-6
+}
+
+.title-format{
+  @apply shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md resize-none
+}
+
+.description-format{
+  @apply shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md
+}
 
 </style>

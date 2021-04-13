@@ -39,9 +39,7 @@ class ImageController extends Controller
 
     public function highlight($image)
     {
-        
         return Image::where('id', $image)->first();
         
-        //return Image::where('id', $image)->exists();
     }
 }

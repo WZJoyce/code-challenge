@@ -32,12 +32,12 @@
         class="py-12"
       ></prenext>
     </div>
+    <p class="p-image" v-if="noResults">No image</p>
   </div>
 </template>
 
 <script>
 import Navbar from "@/components/commons/Navbar";
-import Search from "@/components/commons/Search";
 import Showcard from "@/components/commons/Showcard";
 import VueFlexWaterfall from "@/components/commons/Waterfall";
 import Prenext from "@/components/commons/Prenext";
@@ -45,13 +45,12 @@ import Circlespinner from "@/components/commons/Circlespinner";
 
 export default {
   name: "home",
-  layout:Navbar,
-  components:  {
+  layout: Navbar,
+  components: {
     Showcard,
     VueFlexWaterfall,
     Prenext,
     Circlespinner,
-    Search,
   },
   data() {
     return {
@@ -60,24 +59,22 @@ export default {
       perPage: 30,
       search: " ",
       totalPages: 0,
-      noResults: true,
+      noResults: false,
       isLoading: false,
     };
   },
   created() {
-    console.log("data....."+data);
     var data = window.location.href.split("?")[1].split("=")[1];
-    console.log("data----",data);
     this.search = data;
     this.searchValue(data);
   },
   watch: {
-    '$page.props.search'(val) {
-        if (val.click) {
-          this.searchValue()
-          this.$page.props.search.click = false
-        }
-    }
+    "$page.props.search"(val) {
+      if (val.click) {
+        this.searchValue();
+        this.$page.props.search.click = false;
+      }
+    },
   },
   methods: {
     changePage: function(page) {
@@ -85,13 +82,6 @@ export default {
       this.page = page;
       this.searchImages();
     },
-    //the search message
-    /*searchValue() {
-      if (this.$page.props.search.length == 0) return;
-      this.search = this.$page.props.search.data;
-      this.page = 1;
-      this.searchImages();
-    },*/
     searchValue(data) {
       if (this.search == 0) return;
       this.search = data;
@@ -115,12 +105,20 @@ export default {
           vm.totalPages = response.data.total_pages;
           if (vm.totalPage === 0) {
             vm.noResults = true;
-            return;
           }
           window.scrollTo(0, 0);
         })
-        .catch((err) => console.error(err));
+        .catch(function(err) {
+          vm.noResults = true;
+          console.error(err);
+        });
     },
   },
 };
 </script>
+
+<style>
+.p-image {
+  @apply text-center bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500 text-4xl font-bold;
+}
+</style>

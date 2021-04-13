@@ -1,6 +1,5 @@
 <template>
- <div>
-   
+  <div>
     <div>
       <circlespinner v-if="isLoading"></circlespinner>
     </div>
@@ -12,6 +11,7 @@
     >
       <ul v-if="imagesList.length != 0" v-for="item in imagesList">
         <showcard
+          @reloaddata="reloadData"
           :ref-message="item.url"
           :id="item.id"
           :tit="item.title"
@@ -20,8 +20,8 @@
           btnDelete="1"
         ></showcard>
       </ul>
-    </vue-flex-waterfall> 
-    <p class="text-center bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500 text-4xl font-bold" v-if="Isimage">No image</p>
+    </vue-flex-waterfall>
+    <p class="image-p" v-if="Isimage">No image</p>
   </div>
 </template>
 
@@ -33,22 +33,20 @@ import Prenext from "@/components/commons/Prenext";
 import Circlespinner from "@/components/commons/Circlespinner";
 export default {
   name: "mediaLibrary",
-  layout:Navbar,
+  layout: Navbar,
   components: {
     Showcard,
     VueFlexWaterfall,
     Prenext,
     Circlespinner,
-   
   },
   data() {
     return {
       imagesList: [],
       isLoading: true,
-       Isimage: false,
+      Isimage: false,
     };
   },
-
   created() {
     this.libraryImages();
   },
@@ -63,12 +61,23 @@ export default {
           console.log(response.data);
           vm.isLoading = false;
           vm.imagesList = response.data;
-          if(!vm.imagesList.length){
+          if (!vm.imagesList.length) {
             vm.Isimage = true;
           }
         })
         .catch((err) => console.error(err));
     },
+    reloadData: function(value){
+      if(value){
+        this.libraryImages();
+      }
+    }
   },
 };
 </script>
+
+<style>
+.image-p {
+  @apply text-center bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500 text-4xl font-bold;
+}
+</style>

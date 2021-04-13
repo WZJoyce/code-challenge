@@ -1,18 +1,17 @@
 <template>
   <div class="inline-flex items-center">
-    <button class="page-button disabled:text-gray-300" @click="changePage(1)" :disabled="this.page==1">
+    <button class="page-button" @click="changePage(1)" :disabled="this.page==1">
         First
     </button>
-    <button class="page-button disabled:text-gray-300" @click="changePage(page - 1)" :disabled="this.page==1">
+    <button class="page-button" @click="changePage(page - 1)" :disabled="this.page==1">
       Prev
     </button>
     <span>Page: {{ page }}</span>
     </button>
-
-    <button class="page-button disabled:text-gray-300" @click="changePage(page + 1)" :disabled="this.page==this.totalPages">
+    <button class="page-button" @click="changePage(page + 1)" :disabled="this.page==this.totalPages">
       Next
     </button>
-    <button class="page-button disabled:text-gray-300" @click="changePage(totalPages)" :disabled="this.page==this.totalPages">
+    <button class="page-button" @click="changePage(totalPages)" :disabled="this.page==this.totalPages">
       Last
     </button>
   </div>
@@ -38,12 +37,9 @@ export default {
     //the previous page, the next page, the first page, the last page
     changePage: function(page) {
       this.page=page;
-      
       if (this.page < 1 || this.page>this.totalPages) {
-        
         return;
       }
-     
       this.$emit('change-page', page)
      
     }
@@ -53,6 +49,6 @@ export default {
 
 <style>
 .page-button {
-  @apply bg-white w-auto flex justify-end items-center text-gray-800 p-2 hover:text-gray-400 rounded-l font-bold;
+  @apply bg-white w-auto flex justify-end items-center text-gray-800 p-2 hover:text-gray-400 disabled:text-gray-300 rounded-l font-bold;
 }
 </style>
